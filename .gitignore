@@ -1,0 +1,6 @@
+*.hp
+dist-newstyle
+src/Parallelism.hs
+src/Shit.hs
+"
+hreaded
