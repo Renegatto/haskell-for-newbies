@@ -216,6 +216,7 @@ giveRest hours pet@Animal {rest,sort} = pet { rest = rest + total }
 (∈) :: forall a. Ord a => a -> Set a -> Bool
 (∈) = Set.member
 
-
 instance TypeError ('Text "Can't show term of type `Pet`") => Show Pet
-
+instance TypeError ('Text "Pet is not a number") => Num Pet
+instance TypeError ('Text "Every Pet is unique and special!") => Eq Pet
+instance TypeError ('Text "Every Pet is unique and special!") => Ord Pet
