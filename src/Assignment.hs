@@ -23,8 +23,7 @@ import Pets (
   , FoodSort (Meat,Vegetables)
   )
 
-import Prelude (Int, Num((+)), negate, ($), (.), print, error, Bool)
-import Data.Ord (Ord(..))
+import Prelude (Int, Num((+)), negate, ($), (.), print, error, Bool,Ord((>),(<),(>=),(<=)))
 import APrelude (if_then_else)
 
 result = (happyJohn,happyAqua)
