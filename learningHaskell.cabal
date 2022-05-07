@@ -81,7 +81,7 @@ common common-lang
     -- NamedWildCards
     NumericUnderscores
     -- OverloadedStrings
-    OverloadedRecordDot
+    -- OverloadedRecordDot
     PartialTypeSignatures
     -- PatternGuards
     -- PolyKinds
