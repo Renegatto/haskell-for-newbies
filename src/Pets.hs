@@ -7,6 +7,8 @@
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE DerivingStrategies #-}
+{-# LANGUAGE StandaloneKindSignatures #-}
 
 module Pets 
   ( poorAqua
@@ -30,9 +32,7 @@ module Pets
   , sort
   ) where
 import Data.Set (Set)
-import qualified Data.Set as Set
-import GHC.TypeLits (TypeError(..), ErrorMessage (Text))
-
+import Data.Kind (Type)
 
 conditionIncludes :: Condition -> Pet -> Bool
 conditionIncludes x pet = x ∈ condition pet 
@@ -96,6 +96,7 @@ fatJohn = Animal
   , rest = 1.2
   }
 
+type Sort :: Type
 data Sort
   = Dog
   | Cat
@@ -103,8 +104,9 @@ data Sort
   | Rat
   | Hamster
   | Fish
-  deriving (Show, Eq)
+  deriving stock (Show, Eq)
 
+type Pet :: Type
 data Pet = Animal
   { name :: String
   , sort :: Sort
@@ -113,20 +115,25 @@ data Pet = Animal
   , rest :: Coeff
   }
 
-newtype Coeff = MkCoeff {getCoeff :: Float}
-  deriving (Show, Num, Eq, Ord, Enum, Real, Fractional)
+type Coeff :: Type
+newtype Coeff = MkCoeff Float
+  deriving newtype (Show, Num, Eq, Ord, Enum, Real, Fractional)
+  deriving newtype Random
 
+type Food :: Type
 data Food = MkFood 
   { foodSort :: FoodSort
-  , kg :: Float} deriving Show
+  , kg :: Float} deriving stock Show
 
+type FoodSort :: Type
 data FoodSort
   = Meat
   | Vegetables
   | Fruits
   | Cereals
-  deriving Show
+  deriving stock Show
 
+type Condition :: Type
 data Condition
   = Dehydration
   | Hyperhydration
@@ -136,7 +143,7 @@ data Condition
   | Boredom
   | Hunger
   | Oversatiety
-  deriving (Show,Eq,Ord)
+  deriving stock (Show,Eq,Ord)
 
 conditionByRest Animal {rest} =
   if  | rest >= 1 -> [Boredom,Excitement]
