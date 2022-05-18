@@ -25,6 +25,7 @@ module Pets
   , overslept
   , FoodSort(..)
   , Sort (..)
+  , Pet
   -- For checking assignment
   , sort
   ) where
