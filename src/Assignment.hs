@@ -1,9 +1,11 @@
-module Assignment (result) where
+module Assignment (result, i'mReadyForNextTask, makePetFeelGood) where
 
 import Pets (
   -- Pets
-    poorAqua
+    randomPet
+  , poorAqua
   , fatJohn
+  , Pet
   -- Manipulations
   , giveWater
   , giveRest
@@ -23,14 +25,33 @@ import Pets (
   , FoodSort (Meat,Vegetables)
   )
 
-import Prelude (Int, Num((+)), negate, ($), (.), print, error, Bool,Ord((>),(<),(>=),(<=)))
+
+import Prelude (Int, Num((+)), negate, ($), (.), print, error, Bool (True,False),Ord((>),(<),(>=),(<=)))
 import APrelude (if_then_else)
 
+-- * How to check your results:
+-- Type `cabal run` in the terminal (Ctrl + Shift + ~)
+
+-- * First assignment
+-- is to make those pets feels good
+result :: (Pet, Pet)
 result = (happyJohn,happyAqua)
 
-happyAqua = feed Meat 4 (giveRest 1 (giveWater 1 poorAqua))
+happyAqua :: Pet
+happyAqua = error "Happy Aqua is not implemented :("
 
-happyJohn = error "Not implemented :("
+happyJohn :: Pet
+happyJohn = error "Happy John is not implemented :("
+
+-- * Next assignment
+-- When you're done with first task, go do next one:
+i'mReadyForNextTask :: Bool
+i'mReadyForNextTask = False -- set it to 'True'
+
+makePetFeelGood :: Pet -> Pet
+makePetFeelGood = error "Not implemented :(" -- implement this function
+
+-- * Worksheet:
 
 -- Food
 _ = Meat :: FoodSort
