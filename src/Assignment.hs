@@ -96,3 +96,15 @@ max = \a b -> if_then_else (a > b) a b
 -- | This is a function of one argument. It takes an Int and returns an Int
 addFive :: Int -> Int
 addFive = \n -> n + 5
+
+
+-- >>> condition poorAqua 
+-- fromList [Dehydration,Weakness,Sleepyness,Hunger]
+
+-- >>> giveWater 1 poorAqua
+-- Can't show term of type `Pet`
+-- In a stmt of an interactive GHCi command: evalPrint it_a57bl
+aqua2 = giveWater 1 poorAqua
+
+-- >>> condition aqua2
+-- fromList [Weakness,Sleepyness,Hunger]
