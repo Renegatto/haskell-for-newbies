@@ -1,4 +1,4 @@
-module Assignment (result, i'mReadyForNextTask, makePetFeelGood) where
+module Assignments.Pets (result, i'mReadyForNextTask, makePetFeelGood) where
 
 import Pets (
   -- Pets
@@ -26,7 +26,7 @@ import Pets (
   )
 
 
-import Prelude (Int, Num((+)), negate, ($), (.), print, error, Bool (True,False),Ord((>),(<),(>=),(<=)))
+import Prelude (Int, Num((+)), negate, ($), (.), print, error, Bool (True,False),Ord((>),(<),(>=),(<=)), undefined)
 import APrelude (if_then_else)
 
 -- * How to check your results:

@@ -1,5 +1,5 @@
 module Main where
-import Assignment (result, makePetFeelGood, i'mReadyForNextTask)
+import Assignments.Pets (result, makePetFeelGood, i'mReadyForNextTask)
 import Pets (feelsGood, sort, Sort (Dog, Cat), randomPet)
 import Control.Monad (unless, replicateM, (>=>), when)
 import Prelude
