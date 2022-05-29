@@ -28,8 +28,44 @@ add = \x y -> x + y
 mul :: Int -> Int -> Int
 mul = \x y -> x * y
 
+sub :: Int -> Int -> Int
+sub = \x y -> x - y
+
 someBigExpression :: Int
 someBigExpression = (5 * 7) + (3 - 12)
 
-someBigExpression' :: Int
-someBigExpression' = error "Not implemented yet :("
+-- * Strings concatenation
+
+concat :: String -> String -> String
+concat = \x y -> x <> y
+
+mustBe :: String
+mustBe = "Sela muha na gomno, tak i poletela"
+
+a0 :: String
+a0 = "Sela muha na gomno, "
+
+a1 :: String
+a1 = "tak i "
+
+a2 :: String
+a2 = "poletela"
+
+
+resultOfConcat = error "Not implemented :("
+
+-- * Operations over concatenated strings
+
+_ = reverse
+
+b0 :: String
+b0 = "Sela muha na gomno, "
+
+b1 :: String
+b1 = reverse "tak i "
+
+b2 :: String
+b2 = reverse "poletela"
+
+resultOfUnreversed = error "Not implemented :("
+
