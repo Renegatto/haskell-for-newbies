@@ -2,13 +2,16 @@ module Assignments.Substitution where
 
 import APrelude ()
 import Substitution ( f, g, h, f2, f3, e )
-
+import Prelude hiding (concat)
 -- * Substitution
 -- Fulfill `e'` the way it will be the same as `e`
 -- But don't use names `c`, `b`, `a`
 
+-- >>> c' == c
+-- True
+
 c' :: Double
-c' = error "Not implemented :("
+c' = h (f (g(f2 e)(f3 e))) (g(f2 e)(f3 e)) (f2 (g(f2 e)(f3 e)))   
 
 c :: Double
 c = h (f b) a (f2 b)
@@ -17,7 +20,7 @@ b :: Int
 b = g (f2 e) (f3 e)
 
 a :: Int
-a = g (f2 a) (f3 a)
+a = g (f2 e) (f3 e)
 
 -- * Operators to functions conversion
 -- Express `someBigExpression` without use of * and +
@@ -31,8 +34,14 @@ mul = \x y -> x * y
 sub :: Int -> Int -> Int
 sub = \x y -> x - y
 
+-- >>> someBigExpression == someBigExpression'
+-- True
+
 someBigExpression :: Int
 someBigExpression = (5 * 7) + (3 - 12)
+
+--someBigExpression' :: Int
+someBigExpression' = add (mul 5 7) (sub 3 12)
 
 -- * Strings concatenation
 
@@ -68,4 +77,33 @@ b2 :: String
 b2 = reverse "poletela"
 
 resultOfUnreversed = error "Not implemented :("
+
+-- >>> reverse "sdfdsfdsgsd"
+-- "dsgsdfsdfds"
+
+dsgsdfsdfds :: String
+dsgsdfsdfds = "SUK"
+
+sdfdsfdsgsd :: String
+sdfdsfdsgsd = "ASS"
+
+-- >>> dsgsdfsdfds' == dsgsdfsdfds
+-- False
+
+-- >>> dsgsdfsdfds'
+-- "SSA"
+
+
+
+-- >>> ['a','b','c'] == "abc"
+-- True
+
+-- >>> kon'2 == kon'
+-- False
+
+-- >>> kon'2
+-- "Sela muha na gomno, tak i poletela"
+
+kon'2 = concat a0 (concat (reverse a1) (reverse a2))
+
 

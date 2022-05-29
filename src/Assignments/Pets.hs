@@ -38,7 +38,7 @@ result :: (Pet, Pet)
 result = (happyJohn,happyAqua)
 
 happyAqua :: Pet
-happyAqua = error "Happy Aqua is not implemented :("
+happyAqua = feed Meat 4 (giveRest 1  (giveWater 1 poorAqua))
 
 happyJohn :: Pet
 happyJohn = error "Happy John is not implemented :("
