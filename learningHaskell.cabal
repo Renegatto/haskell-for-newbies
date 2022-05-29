@@ -103,7 +103,12 @@ common common-lang
 
 library learningHaskell-lib
     import: common-lang
-    exposed-modules: Assignment, Pets, APrelude
+    exposed-modules:
+      Assignments.Pets
+      Assignments.Substitution
+      Substitution
+      Pets
+      APrelude
  
     -- Modules included in this plibrary but not exported.
     other-modules: 
