@@ -130,6 +130,13 @@ newtype Coeff = MkCoeff Float
   deriving newtype (Show, Num, Eq, Ord, Enum, Real, Fractional)
   deriving newtype Random
 
+randomCoeffR :: Float -> (Coeff,Coeff) -> IO (Coeff)
+randomCoeffR c (MkCoeff mi,MkCoeff ma) = do
+  isPos <- randomIO
+  let signify = if isPos then 1 else (0-1)
+  multiplier <- randomRIO (round $ mi / c :: Int, round $ ma / c) 
+  pure $ signify * fromIntegral multiplier * MkCoeff c
+
 type Food :: Type
 data Food = MkFood 
   { foodSort :: FoodSort
