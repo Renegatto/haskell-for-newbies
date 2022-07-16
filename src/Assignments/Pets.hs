@@ -26,7 +26,7 @@ import Pets (
   )
 
 
-import Prelude (Int, Num((+)), negate, ($), (.), print, error, Bool (True,False),Ord((>),(<),(>=),(<=)), undefined)
+import Prelude (Int, Num((+)), negate, ($), (.), print, error, Bool (True,False),Ord((>),(<),(>=),(<=)), undefined, Integer, (*), (==))
 import APrelude (if_then_else)
 
 -- * How to check your results:
@@ -37,19 +37,34 @@ import APrelude (if_then_else)
 result :: (Pet, Pet)
 result = (happyJohn,happyAqua)
 
+-- >>> wannaRest (fatJohn)
+-- False
+
+fatJohn2 = giveRest -4 fatJohn
+-- >>> condition fatJohn2
+-- fromList []
+-- >>> feelsGood fatJohn2
+-- True
+
 happyAqua :: Pet
 happyAqua = feed Meat 4 (giveRest 1  (giveWater 1 poorAqua))
 
 happyJohn :: Pet
-happyJohn = error "Happy John is not implemented :("
+happyJohn = fatJohn2
 
 -- * Next assignment
 -- When you're done with first task, go do next one:
 i'mReadyForNextTask :: Bool
-i'mReadyForNextTask = False -- set it to 'True'
+i'mReadyForNextTask = True -- set it to 'True'
 
 makePetFeelGood :: Pet -> Pet
-makePetFeelGood = error "Not implemented :(" -- implement this function
+
+
+
+makePetFeelGood = \bePolist -> if_then_else (feelsGood bePolist) bePolist (f bePolist)
+
+
+
 
 -- * Worksheet:
 
@@ -93,18 +108,15 @@ max :: Int -> Int -> Int
 max = \a b -> if_then_else (a > b) a b 
   -- "if a greater than b, then return a, else return b"
 
+have :: Int -> Int 
+have = \s -> if_then_else ( s > 0) s (negate s)
+
+
+-- >>> have 9
+-- 9
+
 -- | This is a function of one argument. It takes an Int and returns an Int
 addFive :: Int -> Int
-addFive = \n -> n + 5
+addFive = \n -> n + 5 -- lambda n. n + 5
 
 
--- >>> condition poorAqua 
--- fromList [Dehydration,Weakness,Sleepyness,Hunger]
-
--- >>> giveWater 1 poorAqua
--- Can't show term of type `Pet`
--- In a stmt of an interactive GHCi command: evalPrint it_a57bl
-aqua2 = giveWater 1 poorAqua
-
--- >>> condition aqua2
--- fromList [Weakness,Sleepyness,Hunger]
