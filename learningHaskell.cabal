@@ -79,6 +79,7 @@ common common-lang
     -- MultiParamTypeClasses
     -- NamedFieldPuns
     -- NamedWildCards
+    NegativeLiterals
     NumericUnderscores
     -- OverloadedStrings
     -- OverloadedRecordDot
