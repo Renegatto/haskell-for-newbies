@@ -26,7 +26,7 @@ import Pets (
   )
 
 
-import Prelude (Int, Num((+)), negate, ($), (.), print, error, Bool (True,False),Ord((>),(<),(>=),(<=)), undefined, Integer, (*), (==))
+import Prelude (Int, Num((+), negate), ($), (.), print, error, Bool (True,False),Ord((>),(<),(>=),(<=)), undefined, Integer, (*), (==), (++), (^), String)
 import APrelude (if_then_else)
 
 -- * How to check your results:
@@ -97,8 +97,6 @@ _ = poorAqua
 _ = fatJohn
 
 -- Examples of how to use functions
-
-_ = negate
 
 is'2'greater'than'9 :: Bool
 is'2'greater'than'9 = 2 > 9
