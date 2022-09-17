@@ -83,8 +83,6 @@ _ = fatJohn
 
 -- Examples of how to use functions
 
-_ = negate
-
 is'2'greater'than'9 :: Bool
 is'2'greater'than'9 = 2 > 9
 
