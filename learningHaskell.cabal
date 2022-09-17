@@ -107,6 +107,8 @@ library learningHaskell-lib
     exposed-modules:
       Assignments.Pets
       Assignments.Substitution
+      Assignments.Text
+      Text
       Substitution
       Pets
       APrelude
