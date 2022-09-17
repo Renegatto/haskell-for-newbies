@@ -3,6 +3,8 @@ import Assignments.Pets (result, makePetFeelGood, i'mReadyForNextTask)
 import Pets (feelsGood, sort, Sort (Dog, Cat), randomPet)
 import Control.Monad (unless, replicateM, (>=>), when)
 import Prelude
+import qualified Assignments.Text as Text
+import qualified Text as TestText
 
 testPets :: Int -> IO Bool
 testPets amount = 
@@ -11,6 +13,9 @@ testPets amount =
 
 main :: IO ()
 main = do
+  when Text.задание2готово $
+    TestText.testText2 30 >>= flip unless
+    (error "Second Text task is not completed")
   let (john,aqua) = result
   when i'mReadyForNextTask $
     testPets 30 >>= flip unless
