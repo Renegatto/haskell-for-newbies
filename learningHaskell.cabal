@@ -32,7 +32,7 @@ common common-lang
     -Wall
     -fprint-explicit-foralls
     -fprint-explicit-kinds
-
+    -interactive-print=Text.Show.Unicode.uprint
     -- -Wall -Wcompat -Wincomplete-uni-patterns
     -- -Wmissing-export-lists -Wincomplete-record-updates
     -- -Wmissing-deriving-strategies
@@ -107,6 +107,7 @@ library learningHaskell-lib
     exposed-modules:
       Assignments.Pets
       Assignments.Substitution
+      Assignments.Text
       Substitution
       Pets
       APrelude
@@ -116,7 +117,7 @@ library learningHaskell-lib
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
-    build-depends: containers, random, time
+    build-depends: containers, random, time, unicode-show
     hs-source-dirs:   src
 
 executable learningHaskell
