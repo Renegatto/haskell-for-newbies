@@ -14,7 +14,7 @@ testPets amount =
 main :: IO ()
 main = do
   when Text.задание2готово $
-    TestText.testText2 30 >>= flip unless
+    TestText.testText2 Text.поШаблону 30 >>= flip unless
     (error "Second Text task is not completed")
   let (john,aqua) = result
   when i'mReadyForNextTask $

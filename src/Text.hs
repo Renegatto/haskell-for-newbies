@@ -1,12 +1,11 @@
 {-# LANGUAGE ImportQualifiedPost #-}
-module Text (testText2) where
+module Text (testText2,overFirst) where
 import System.Random (randomIO)
-import Assignments.Text qualified as Text
 import Control.Monad (replicateM)
 
-prop_text2Completed :: String -> Bool
-prop_text2Completed s =
-   Text.поШаблону s ==
+prop_text2Completed :: (String -> String) -> String -> Bool
+prop_text2Completed f s =
+   f s ==
     "Привет, мой друг " ++ s ++ ". Игнат женился на Сергее?"
 
 randomString :: IO String
@@ -14,7 +13,11 @@ randomString = do
   len <- randomIO
   replicateM len randomIO
 
-testText2 :: Int -> IO Bool
-testText2 amount =
+testText2 :: (String -> String) -> Int -> IO Bool
+testText2 f amount =
   and <$> replicateM amount
-    (prop_text2Completed <$> randomString)
+    (prop_text2Completed f <$> randomString)
+
+overFirst :: (a -> a) -> [a] -> [a]
+overFirst _ [] = []
+overFirst f (x:xs) = f x : xs
