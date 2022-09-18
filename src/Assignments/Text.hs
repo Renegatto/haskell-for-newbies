@@ -15,8 +15,10 @@ import Prelude
   , (==)
   , (++)
   , (^)
-  , String, flip
+  , String, flip, filter, map
   )
+import Data.Char (isUpper)
+import Text (overFirst)
 
 -- :seti -interactive-print=Text.Show.Unicode.uprint
 
@@ -52,11 +54,11 @@ marry = \one second -> concat one (concat " женился на " second)
 ask :: String -> String
 ask = \question -> concat question "?"
 
-закончить :: String -> String
-закончить = flip concat "." 
+finish :: String -> String
+finish = flip concat "." 
 
-черезПробел :: String -> String -> String
-черезПробел = \a -> concat (concat a " ")
+space :: String -> String -> String
+space = \a -> concat (concat a " ")
 
 странныйВопрос = "А ты знала, что Евгений занимается евгеникой?"
 
@@ -72,3 +74,21 @@ ask = \question -> concat question "?"
 поШаблону :: String -> String
 поШаблону = \name ->
   черезПробел (закончить (greet name)) (ask (marry "Игнат" "Сергее")) 
+
+-- * Assignment 3
+{-
+Написякай функцию, которая берет на вход список имен и возвращает список фраз
+"по шаблону" для тех имен, которые начинаются с большой буквы.
+
+фразыПоШаблону ["Витя","таня","Петя"] =
+  [ "Привет, мой друг Витя. Игнат женился на Сергее?"
+  , "Привет, мой друг Петя. Игнат женился на Сергее?" ]
+-}
+_ = isUpper -- Является ли символ (Char) прописной буквой
+_ = filter
+_ = map
+_ = overFirst :: (a -> a) -> [a] -> [a] -- применяет функцию к первому элементу списка
+_ = (.) -- оператор композиции функций. `(f . g) x = f (g x)`
+
+фразыПоШаблону :: [String] -> [String]
+фразыПоШаблону = undefined
