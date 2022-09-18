@@ -67,7 +67,8 @@ ask = \question -> concat question "?"
 -}
 
 задание2готово :: Bool
-задание2готово = False
+задание2готово = True
 
 поШаблону :: String -> String
-поШаблону = undefined
+поШаблону = \name ->
+  черезПробел (закончить (greet name)) (ask (marry "Игнат" "Сергее")) 

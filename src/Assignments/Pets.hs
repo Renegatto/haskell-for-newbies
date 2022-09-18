@@ -61,7 +61,7 @@ makePetFeelGood :: Pet -> Pet
 
 
 
-makePetFeelGood = \bePolist -> if_then_else (feelsGood bePolist) bePolist (f bePolist)
+makePetFeelGood = \bePolist -> if_then_else (feelsGood bePolist) bePolist (undefined bePolist)
 
 
 
@@ -116,5 +116,3 @@ have = \s -> if_then_else ( s > 0) s (negate s)
 -- | This is a function of one argument. It takes an Int and returns an Int
 addFive :: Int -> Int
 addFive = \n -> n + 5 -- lambda n. n + 5
-
-
