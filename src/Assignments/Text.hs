@@ -73,7 +73,7 @@ space = \a -> concat (concat a " ")
 
 поШаблону :: String -> String
 поШаблону = \name ->
-  черезПробел (закончить (greet name)) (ask (marry "Игнат" "Сергее")) 
+  space (finish (greet name)) (ask (marry "Игнат" "Сергее")) 
 
 -- * Assignment 3
 {-
