@@ -52,11 +52,11 @@ marry = \one second -> concat one (concat " женился на " second)
 ask :: String -> String
 ask = \question -> concat question "?"
 
-закончить :: String -> String
-закончить = flip concat "." 
+finish :: String -> String
+finish = flip concat "." 
 
-черезПробел :: String -> String -> String
-черезПробел = \a -> concat (concat a " ")
+space :: String -> String -> String
+space = \a -> concat (concat a " ")
 
 странныйВопрос = "А ты знала, что Евгений занимается евгеникой?"
 
