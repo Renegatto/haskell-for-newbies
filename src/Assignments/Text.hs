@@ -39,7 +39,6 @@ exclaim = \s -> concat s "!"
 greet :: String -> String
 greet = \name -> concat "Привет, мой друг " name
 
-
 поля = "Полина"
 
 _ = "Привет, мой друг Полина"
@@ -94,5 +93,5 @@ _ = firstSatisfies :: forall a. (a -> Bool) -> [a] -> Bool
 -- | оператор композиции функций. `(f . g) x = f (g x)`
 _ = (.) :: forall a b c. (b -> c) -> (a -> b) -> a -> c
 
-фразыПоШаблону :: [String] -> [String]
-фразыПоШаблону = undefined
+--фразыПоШаблону :: [String] -> [String]
+фразыПоШаблону = \names -> поШаблону (filter isUpper (name :: [Char] ))
