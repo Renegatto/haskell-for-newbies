@@ -1,5 +1,5 @@
 {-# LANGUAGE ImportQualifiedPost #-}
-module Text (testText2,overFirst) where
+module Text (testText2,firstSatisfies) where
 import System.Random (randomIO)
 import Control.Monad (replicateM)
 
@@ -21,3 +21,7 @@ testText2 f amount =
 overFirst :: (a -> a) -> [a] -> [a]
 overFirst _ [] = []
 overFirst f (x:xs) = f x : xs
+
+firstSatisfies :: (a -> Bool) -> [a] -> Bool
+firstSatisfies _ [] = False
+firstSatisfies f (x:_) = f x
