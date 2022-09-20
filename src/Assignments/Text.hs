@@ -15,10 +15,10 @@ import Prelude
   , (==)
   , (++)
   , (^)
-  , String, flip, filter, map
+  , String, flip, filter, map, Char
   )
 import Data.Char (isUpper)
-import Text (overFirst)
+import Text (firstSatisfies)
 
 -- :seti -interactive-print=Text.Show.Unicode.uprint
 
@@ -83,11 +83,15 @@ space = \a -> concat (concat a " ")
   [ "Привет, мой друг Витя. Игнат женился на Сергее?"
   , "Привет, мой друг Петя. Игнат женился на Сергее?" ]
 -}
-_ = isUpper -- Является ли символ (Char) прописной буквой
-_ = filter
-_ = map
-_ = overFirst :: (a -> a) -> [a] -> [a] -- применяет функцию к первому элементу списка
-_ = (.) -- оператор композиции функций. `(f . g) x = f (g x)`
+-- char 'D'
+-- | является ли символ (Char) прописной буквой
+_ = isUpper :: Char -> Bool 
+_ = filter :: forall a. (a -> Bool) -> [a] -> [a]
+_ = map :: forall a b. (a -> b) -> [a] -> [b]
+-- | удовлетворяет ли первый элемент списка условию
+_ = firstSatisfies :: forall a. (a -> Bool) -> [a] -> Bool 
+-- | оператор композиции функций. `(f . g) x = f (g x)`
+_ = (.) :: forall a b c. (b -> c) -> (a -> b) -> a -> c
 
 фразыПоШаблону :: [String] -> [String]
 фразыПоШаблону = undefined
