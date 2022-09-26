@@ -114,6 +114,8 @@ dontTouch3 :: forall a. Ord a => a -> a -> Bool
 dontTouch3 = (>)
 dontTouch4 :: forall a. Ord a => a -> a -> Bool
 dontTouch4 = (>=)
+dontTouch5 :: forall a. Ord a => a -> a -> Bool
+dontTouch5 = (==)
 
 f :: [String] -> [String]
 f = undefined
