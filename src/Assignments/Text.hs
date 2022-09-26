@@ -1,3 +1,4 @@
+{-# LANGUAGE NoMonomorphismRestriction, ScopedTypeVariables #-}
 module Assignments.Text where
 
 import Prelude
@@ -15,7 +16,7 @@ import Prelude
   , (==)
   , (++)
   , (^)
-  , String, flip, filter, map, Char
+  , String, flip, filter, map, Char, Foldable (length)
   )
 import Data.Char (isUpper)
 import Text (firstSatisfies)
@@ -95,3 +96,24 @@ _ = (.) :: forall a b c. (b -> c) -> (a -> b) -> a -> c
 
 фразыПоШаблону :: [String] -> [String]
 фразыПоШаблону = undefined
+
+-- * Assignment 4
+{-
+Напиши функцию f, которая:
+- принимает список имён
+- добавляет приставку "Сэр" ("Иван" |-> "Сэр Иван") ко всем именам
+- возвращает список всех получившихся фраз для этих имен, которые короче 49 символов
+-}
+_ = length :: forall a. [a] -> Int
+
+dontTouch1 :: forall a. Ord a => a -> a -> Bool
+dontTouch1 = (<)
+dontTouch2 :: forall a. Ord a => a -> a -> Bool
+dontTouch2 = (<=)
+dontTouch3 :: forall a. Ord a => a -> a -> Bool
+dontTouch3 = (>)
+dontTouch4 :: forall a. Ord a => a -> a -> Bool
+dontTouch4 = (>=)
+
+f :: [String] -> [String]
+f = undefined
