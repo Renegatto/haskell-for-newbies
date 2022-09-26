@@ -93,5 +93,5 @@ _ = firstSatisfies :: forall a. (a -> Bool) -> [a] -> Bool
 -- | оператор композиции функций. `(f . g) x = f (g x)`
 _ = (.) :: forall a b c. (b -> c) -> (a -> b) -> a -> c
 
---фразыПоШаблону :: [String] -> [String]
-фразыПоШаблону = \names -> поШаблону (filter isUpper (name :: [Char] ))
+фразыПоШаблону :: [String] -> [String]
+фразыПоШаблону = map поШаблону . filter (firstSatisfies isUpper)
