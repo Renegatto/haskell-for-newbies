@@ -16,7 +16,7 @@ import Prelude
   , (==)
   , (++)
   , (^)
-  , String, flip, filter, map, Char, Foldable (length)
+  , String, flip, filter, map, Char, Foldable (length), lookup
   )
 import Data.Char (isUpper)
 import Text (firstSatisfies)
@@ -38,42 +38,62 @@ exclaim = \s -> concat s "!"
 
 -- | Поприветствовать
 greet :: String -> String
-greet = \name -> concat "Привет, мой друг " name
+greet = \name -> concat "Привет, мой друг " name   
 
+_ = "dfhd" -- строковый литерал
+_ = 7878 -- числовой литерал
 
+ильюха :: String
 ильюха = "Ильюха"
 
 _ = "Привет, мой друг Ильюха"
+ы = greet ильюха
 
 _ = "Привет, мой друг Ильюха. Игнат женился на Сергее?"
+ъ = space (greet (finish "Ильюха")) (ask(marry "Игнат" "Сергее"))
+
 
 -- | Поженились
-marry :: String -> (String -> String)
+marry :: String -> String -> String
 marry = \one second -> concat one (concat " женился на " second)
 
 -- | Спросить
-ask :: String -> String
+--ask :: String -> String
 ask = \question -> concat question "?"
+
+ask' = \вопрос -> concat вопрос "?"
 
 finish :: String -> String
 finish = flip concat "." 
 
 space :: String -> String -> String
 space = \a -> concat (concat a " ")
-
+{-@
+marry "Хуй" "Конский"
+(\one second -> concat one (concat " женился на " second)) "Хуй" "Конский"
+(\second -> concat "Хуй" (concat " женился на " second)) "Конский"
+(concat "Хуй" (concat " женился на " "Конский"))
+(concat "Хуй" " женился на Конский")
+"Хуй женился на Конский"
+@-}
 странныйВопрос = "А ты знала, что Евгений занимается евгеникой?"
 
 -- * Assignment 2
 {-
 поШаблону "Полина" = "Привет, мой друг Полина. Игнат женился на Сергее?"
 поШаблону "Витя" = "Привет, мой друг Витя. Игнат женился на Сергее?"
+
+2a
+
+поШаблону "Полина" "Петух" = "Привет, мой друг Полина. Петух женился на Сергее?"
+поШаблону "Витя" "Конченый" = "Привет, мой друг Витя. Конченый женился на Сергее?"
 -}
 
 задание2готово :: Bool
 задание2готово = False
 
-поШаблону :: String -> String
-поШаблону = undefined
+поШаблону :: String -> String -> String
+поШаблону = \name pups-> space (greet (finish name)) (ask(marry pups "Сергее"))
 
 -- * Assignment 3
 {-
