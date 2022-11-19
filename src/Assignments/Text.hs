@@ -32,6 +32,9 @@ import Text (firstSatisfies)
 concat :: String -> String -> String
 concat = (++)
 
+separator :: String -> String -> String -> String
+separator = \sep x y -> concat x (concat sep y)
+
 -- | Восклицание
 exclaim :: String -> String
 exclaim = \s -> concat s "!"
@@ -43,9 +46,6 @@ greet = \name -> concat "Привет, мой друг " name
 _ = "dfhd" -- строковый литерал
 _ = 7878 -- числовой литерал
 
-ильюха :: String
-ильюха = "Ильюха"
-
 _ = "Привет, мой друг Ильюха"
 ы = greet ильюха
 
@@ -55,27 +55,18 @@ _ = "Привет, мой друг Ильюха. Игнат женился на 
 
 -- | Поженились
 marry :: String -> String -> String
-marry = \one second -> concat one (concat " женился на " second)
+marry = separator " женился на "
 
 -- | Спросить
---ask :: String -> String
+ask :: String -> String
 ask = \question -> concat question "?"
-
-ask' = \вопрос -> concat вопрос "?"
 
 finish :: String -> String
 finish = flip concat "." 
 
 space :: String -> String -> String
-space = \a -> concat (concat a " ")
-{-@
-marry "Хуй" "Конский"
-(\one second -> concat one (concat " женился на " second)) "Хуй" "Конский"
-(\second -> concat "Хуй" (concat " женился на " second)) "Конский"
-(concat "Хуй" (concat " женился на " "Конский"))
-(concat "Хуй" " женился на Конский")
-"Хуй женился на Конский"
-@-}
+space = separator " "
+
 странныйВопрос = "А ты знала, что Евгений занимается евгеникой?"
 
 -- * Assignment 2
@@ -93,7 +84,30 @@ marry "Хуй" "Конский"
 задание2готово = False
 
 поШаблону :: String -> String -> String
-поШаблону = \name pups-> space (greet (finish name)) (ask(marry pups "Сергее"))
+поШаблону = \name pups -> space (greet (finish name)) (ask(marry pups "Сергее"))
+
+-----------------
+
+choice :: String -> String -> String
+choice = separator " или "
+
+naOlge = "на Ольге"
+
+ильюха = "Ильюха"
+
+телятине = "телятине"
+
+
+-- должно быть так
+_ = "Ильюха женился на телятине или на Ольге?"
+
+решение = 
+  ask(choice(marry ильюха телятине) naOlge)
+
+
+
+
+
 
 -- * Assignment 3
 {-
