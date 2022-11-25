@@ -118,7 +118,7 @@ library learningHaskell-lib
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
-    build-depends: containers, random, time, unicode-show
+    build-depends: containers, random, time
     hs-source-dirs:   src
 
 executable learningHaskell
