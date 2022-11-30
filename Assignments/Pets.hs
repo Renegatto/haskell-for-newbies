@@ -2,8 +2,8 @@ module Assignments.Pets (result, i'mReadyForNextTask, makePetFeelGood) where
 
 import Pets (
   -- Pets
-    randomPet
-  , poorAqua
+  --  randomPet
+    poorAqua
   , fatJohn
   , Pet
   -- Manipulations

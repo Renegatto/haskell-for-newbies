@@ -16,7 +16,7 @@
 module Pets 
   ( poorAqua
   , fatJohn
-  , randomPet
+  --, randomPet
 
   , condition
   , feelsGood
@@ -39,7 +39,7 @@ module Pets
 import Data.Set (Set)
 import Data.Set qualified as Set
 import GHC.TypeLits (TypeError, ErrorMessage (Text))
-import System.Random (randomRIO, Random)
+--import System.Random (randomRIO, Random)
 import Data.Functor ((<&>))
 import Control.Monad (replicateM)
 import Data.Kind (Type)
@@ -128,7 +128,7 @@ data Pet = Animal
 type Coeff :: Type
 newtype Coeff = MkCoeff Float
   deriving newtype (Show, Num, Eq, Ord, Enum, Real, Fractional)
-  deriving newtype Random
+  --deriving newtype Random
 
 type Food :: Type
 data Food = MkFood 
@@ -241,34 +241,34 @@ instance TypeError ('Text "Every Pet is unique and special!") => Ord Pet
 
 -- * Random pets
 
-genPetSort :: IO Sort
-genPetSort =  randomRIO (0 :: Int,6) <&>
-  \case
-    0 -> Dog
-    1 -> Cat
-    2 -> Worm
-    3 -> Rat
-    4 -> Hamster
-    _ -> Fish
+-- genPetSort :: IO Sort
+-- genPetSort =  randomRIO (0 :: Int,6) <&>
+--   \case
+--     0 -> Dog
+--     1 -> Cat
+--     2 -> Worm
+--     3 -> Rat
+--     4 -> Hamster
+--     _ -> Fish
 
-randomElem :: [a] -> IO a
-randomElem xs = 
-  (xs !!) <$> randomRIO (0,length xs - 1)
+-- randomElem :: [a] -> IO a
+-- randomElem xs = 
+--   (xs !!) <$> randomRIO (0,length xs - 1)
 
-randomName :: IO String
-randomName = do
-  firstLetter <- randomElem ['A'..'Z']
-  nameLength <- randomRIO (4,10)
-  restOfName <- replicateM (pred nameLength) (randomElem ['a'..'z'])
-  pure $ firstLetter : restOfName
+-- randomName :: IO String
+-- randomName = do
+--   firstLetter <- randomElem ['A'..'Z']
+--   nameLength <- randomRIO (4,10)
+--   restOfName <- replicateM (pred nameLength) (randomElem ['a'..'z'])
+--   pure $ firstLetter : restOfName
 
-randomPet :: IO Pet
-randomPet = do
-  name <- randomName
-  sort <- genPetSort
-  let sized :: forall m. Monad m => m Coeff -> m Coeff
-      sized = fmap $ (*) (petSizeCoeff sort)
-  thirst <- sized $ randomRIO (-2,2)
-  satiety <- sized $ randomRIO (-5,3)
-  rest <- sized $ randomRIO (-8,8)
-  pure $ Animal { .. }
+-- randomPet :: IO Pet
+-- randomPet = do
+--   name <- randomName
+--   sort <- genPetSort
+--   let sized :: forall m. Monad m => m Coeff -> m Coeff
+--       sized = fmap $ (*) (petSizeCoeff sort)
+--   thirst <- sized $ randomRIO (-2,2)
+--   satiety <- sized $ randomRIO (-5,3)
+--   rest <- sized $ randomRIO (-8,8)
+--   pure $ Animal { .. }

@@ -62,6 +62,8 @@ space = \a -> concat (concat a " ")
 byTemplate "Bob" = "Hi, my dear friend Bob. Ignat have married Sergey?"
 byTemplate "Gregory" = "Hi, my dear friend Gregory. Ignat have married Sergey?"
 -}
+assignment2a_isReady :: Bool
+assignment2a_isReady = False
 
 byTemplate :: String -> String
 byTemplate = undefined
@@ -71,7 +73,10 @@ byTemplate2 "Bob" "Charlie" "George" = "Hi, my dear friend Bob. Charlie have mar
 byTemplate2 "Gregory" "Eelon Musk" "you" = "Hi, my dear friend Gregory. Eelon Musk have married you?"
 -}
 
-byTemplate2 :: String -> String -> String
+assignment2b_isReady :: Bool
+assignment2b_isReady = False
+
+byTemplate2 :: String -> String -> String -> String
 byTemplate2 = undefined
 
 -- * Assignment 3
@@ -93,6 +98,9 @@ _ = firstSatisfies :: forall a. (a -> Bool) -> [a] -> Bool
 -- | оператор композиции функций. `(f . g) x = f (g x)`
 _ = (.) :: forall a b c. (b -> c) -> (a -> b) -> a -> c
 
+assignment3_isReady :: Bool
+assignment3_isReady = False
+
 phrasesByTemplate :: [String] -> [String]
 phrasesByTemplate = undefined
 
@@ -101,7 +109,7 @@ phrasesByTemplate = undefined
 Напиши функцию weirdTemplate, которая:
 - принимает список имён
 - добавляет приставку "Sir" ("Ivan" |-> "Sir Ivan") ко всем именам
-- возвращает список всех получившихся фраз для этих имен, которые короче 49 символов
+- возвращает список всех получившихся фраз для этих имен, которые короче 53 символов
 -}
 _ = length :: forall a. [a] -> Int
 
@@ -115,6 +123,9 @@ dontTouch4 :: forall a. Ord a => a -> a -> Bool
 dontTouch4 = (>=)
 dontTouch5 :: forall a. Ord a => a -> a -> Bool
 dontTouch5 = (==)
+
+assignment4_isReady :: Bool
+assignment4_isReady = False
 
 weirdTemplate :: [String] -> [String]
 weirdTemplate = undefined
