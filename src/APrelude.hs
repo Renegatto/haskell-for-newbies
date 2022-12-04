@@ -2,12 +2,12 @@
 {-# LANGUAGE UndecidableInstances #-}
 {-# LANGUAGE TypeOperators #-}
 {-# LANGUAGE AllowAmbiguousTypes #-}
-module APrelude (if_then_else) where
+module APrelude (if_then_else,List) where
 import GHC.TypeLits (TypeError(..), ErrorMessage (Text, (:<>:), ShowType))
 if_then_else :: Bool -> a -> a -> a
 if_then_else True ifTrue _ = ifTrue
 if_then_else _ _ ifFalse = ifFalse
-
+type List = []
 instance 
   TypeError (
     'Text "Expected number, got function '"
