@@ -1,7 +1,7 @@
 module Assignments.Rec where
 import Data.List.NonEmpty (NonEmpty)
 import qualified Data.List.NonEmpty as NonEmpty
-
+import APrelude (if_then_else)
 
 _ = foldl :: forall a b. (b -> a -> b) -> b -> [a] -> b
 
@@ -73,6 +73,8 @@ smallerBy (< 5) -45456 = -45456
 
 @-}
 
+smallerBy :: (Integer -> Bool) -> Integer -> Integer
+smallerBy = undefined
 {-@ -- Assignment 5
 
 -- Given a (satisfiable) predicate on a number, finds closest to 0 number that satisfies it
@@ -83,6 +85,7 @@ closestBy (\x -> x /= x) = -- never terminates
 
 @-}
 
+interval :: Double -> (Double -> Bool, Double -> Bool)
 interval n = ((<= n), (>= n))
 
 {-@ -- Assignment 5 (yeah boi!)
@@ -104,5 +107,9 @@ in x <= 10, x >= 36
 
 @-}
 
-inInterval :: (Double -> Bool,Double -> Bool) -> Double
+inInterval
+  :: (Double -> Bool) -- ^ if given value is greater than desired one
+  -> (Double -> Bool) -- ^ if given value is less than desired one
+  -> (Double -> Bool) -- ^ if given value is exactly desired one
+  -> Double
 inInterval = undefined
