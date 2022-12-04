@@ -13,7 +13,7 @@ sumStuff [] = 0
 @-}
 
 sumStuff :: [Integer] -> Integer
-sumStuff = undefined
+sumStuff = foldl (+) 0
 
 {-@ -- Assigment 1b
 
@@ -22,7 +22,7 @@ glue ["ab","cd","325235"] == "abcd325235"
 @-}
 
 glue :: [String] -> String
-glue = undefined
+glue = foldl (<>) ""
 
 -- Part two
 
@@ -49,7 +49,7 @@ maximum (7 :| [19,23,9,-6]) == 23
 _ = NonEmpty.head :: forall a. NonEmpty a -> a
 
 maximum :: Ord a => NonEmpty a -> a
-maximum = undefined 
+maximum = flip (foldl (\acc x -> if x > acc then x else acc)) <*> NonEmpty.head 
 
 -- ===============================
 -- RECURSION
@@ -63,7 +63,7 @@ fac 6 = 1 * 2 * 3 * 4 * 5 * 6
 @-}
 
 fac :: Integer -> Integer
-fac = undefined
+fac = \n -> n * fac (n - 1)
 
 {-@ -- Assignment 4
 
@@ -74,7 +74,8 @@ smallerBy (< 5) -45456 = -45456
 @-}
 
 smallerBy :: (Integer -> Bool) -> Integer -> Integer
-smallerBy = undefined
+smallerBy = \less x -> if less x then x else smallerBy less (x - 1)
+
 {-@ -- Assignment 5
 
 -- Given a (satisfiable) predicate on a number, finds closest to 0 number that satisfies it
@@ -112,4 +113,12 @@ inInterval
   -> (Double -> Bool) -- ^ if given value is less than desired one
   -> (Double -> Bool) -- ^ if given value is exactly desired one
   -> Double
-inInterval = undefined
+inInterval gt lt eq = go lt gt eq 0 10000
+  where
+    go :: forall a. Fractional a => (a -> Bool) -> (a -> Bool) -> (a -> Bool) -> a -> a -> a
+    go shouldContinue shouldGoBack enough value step =
+      if enough value then value else
+        if shouldContinue value -- we've been going upward
+        then go shouldContinue shouldGoBack enough (value + step) step
+        else go shouldGoBack shouldContinue enough value (negate $ step / 2)
+       
