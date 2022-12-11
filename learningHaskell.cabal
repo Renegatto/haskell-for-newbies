@@ -109,6 +109,7 @@ library learningHaskell-lib
       Assignments.Substitution
       Assignments.Text
       Assignments.Rec
+      Assignments.Data
       Text
       Substitution
       Pets
