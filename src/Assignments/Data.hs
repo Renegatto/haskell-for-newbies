@@ -1,5 +1,8 @@
 {-# LANGUAGE StandaloneDeriving #-}
+{-# LANGUAGE StandaloneKindSignatures #-}
+{-# OPTIONS_GHC -Wno-missing-kind-signatures #-}
 module Assignments.Data where
+import Data.Kind (Type)
 
 --------------------------------------
 -- This is how we define the datatype:
@@ -60,14 +63,8 @@ jackTheDog = undefined
 sandraPets :: [_]
 sandraPets = undefined
 
-
-
-
-
-
 ---------------------------
 -- You also can pattern-match your datatypes in functions.
-
 
 data DirectionToGo = GoLeft | GoRight
 
@@ -124,3 +121,43 @@ isItOneOrThree _ = "Nope, it's something else"
 -- | How much given animal eats Kg of food per day
 eatsKgOfFoodPerDay :: _ -> Float
 eatsKgOfFoodPerDay = undefined
+
+{- ---------------------------
+
+  Assignment 4
+
+  Only cats and dogs do shed.
+
+-}
+
+-- | Whether certain kind of animals sheds or not
+sheds :: _ -> Bool
+sheds = undefined
+
+---------------------------
+-- Data constructors may have arguments.
+
+{- | The datatype represent an intruder that
+ has been spotted (on camera or by staff)
+  It's either was not identifed, or we know intruders identity number. 
+-}
+data SpottedIntruder
+  = NotIdentified
+  | IdentifiedAs CitizenIdentityNumber
+
+-- | The description of a next step of catching the villain.
+data NextStepToCatch
+  = PutInWantedList Photo
+    -- maybe someone will recognize him by photo and we get villain identity
+  | AmbushAtRegistrationAddress CitizenIdentityNumber
+    -- we know where he lives. Let's catch him up there
+  | ApologizeAndWaitForNewCrimes
+    -- because what can we do without having neither photo nor identity?
+
+-- | Given maybe photo and spotted intruder data, calculates what to do to catch villain
+nextStepToCatch :: Maybe Photo -> SpottedIntruder -> NextStepToCatch
+nextStepToCatch = undefined
+ 
+-- It's not important what's here, you don't need it.
+data CitizenIdentityNumber = EuropeanFormat Integer | RussianFormat String 
+data Photo = BitmapImage [[(Float,Float,Float)]]
