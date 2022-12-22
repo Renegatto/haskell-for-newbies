@@ -1,7 +1,16 @@
 {-# LANGUAGE DataKinds #-}
 module Assignments.Finances where
 import Finances (Staff,  Post(Directors))
-import Finances.Types (USD, Worker, Performance,)
+import Finances.Types
+  ( USD
+  , Worker
+    ( MkWorker
+    , workerName
+    , workerOutcome
+    , workerSalary
+    )
+  , Performance (MkPerformance, outcome,salary)
+  )
 
 averageSalary :: [Worker] -> USD
 averageSalary = undefined

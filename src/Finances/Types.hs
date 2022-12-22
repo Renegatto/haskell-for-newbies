@@ -21,7 +21,7 @@ data Performance =
 
 type Worker :: Type
 data Worker = MkWorker
-  { name :: String
-  , outcome :: USD
-  , salary :: USD
+  { workerName :: String
+  , workerOutcome :: USD
+  , workerSalary :: USD
   }

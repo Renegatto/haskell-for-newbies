@@ -8,7 +8,7 @@
 {-# LANGUAGE DerivingVia #-}
 module Finances where
 import Data.Kind (Type, Constraint)
-import Finances.Types (USD (MkUSD), Worker (MkWorker, name, outcome, salary))
+import Finances.Types (USD (MkUSD), Worker (MkWorker, workerName, workerOutcome, workerSalary))
 
 type Post :: Type
 data Post
@@ -106,120 +106,120 @@ singingCrickets :: Staff 'Directors
 singingCrickets =
   DirectorsStaff
     MkWorker
-      { name = "Benjamin Cook"
-      , outcome = MkUSD 25_000
-      , salary = MkUSD 3_678_900
+      { workerName = "Benjamin Cook"
+      , workerOutcome = MkUSD 25_000
+      , workerSalary = MkUSD 3_678_900
       }
     ( CEOStaff
         MkWorker
-          { name = "Ficjerald Brown"
-          , outcome = MkUSD 19_000
-          , salary = MkUSD 350_900
+          { workerName = "Ficjerald Brown"
+          , workerOutcome = MkUSD 19_000
+          , workerSalary = MkUSD 350_900
           }
         ( CFOStaff
             MkWorker
-              { name = "Elsa Brown"
-              , outcome = MkUSD 15_000
-              , salary = MkUSD 105_900
+              { workerName = "Elsa Brown"
+              , workerOutcome = MkUSD 15_000
+              , workerSalary = MkUSD 105_900
               }
             [ AnalitystStaff
                 MkWorker
-                  { name = "Mila Yovowitch"
-                  , outcome = MkUSD 30_000
-                  , salary = MkUSD 10_000
+                  { workerName = "Mila Yovowitch"
+                  , workerOutcome = MkUSD 30_000
+                  , workerSalary = MkUSD 10_000
                   }
             , AnalitystStaff
                 MkWorker
-                  { name = "John Martin"
-                  , outcome = MkUSD 35_000
-                  , salary = MkUSD 12_000
+                  { workerName = "John Martin"
+                  , workerOutcome = MkUSD 35_000
+                  , workerSalary = MkUSD 12_000
                   }
             ]
             [ AccountantStaff
                 MkWorker
-                  { name = "Greedy Butch"
-                  , outcome = MkUSD 20_000
-                  , salary = MkUSD 4_000
+                  { workerName = "Greedy Butch"
+                  , workerOutcome = MkUSD 20_000
+                  , workerSalary = MkUSD 4_000
                   }
             , AccountantStaff
                 MkWorker
-                  { name = "Philip Cock"
-                  , outcome = MkUSD 66_000
-                  , salary = MkUSD 8_000
+                  { workerName = "Philip Cock"
+                  , workerOutcome = MkUSD 66_000
+                  , workerSalary = MkUSD 8_000
                   }
             ]
         )
         ( COOStaff
             MkWorker
-              { name = "Rodger Stone"
-              , outcome = MkUSD 40_000
-              , salary = MkUSD 107_000
+              { workerName = "Rodger Stone"
+              , workerOutcome = MkUSD 40_000
+              , workerSalary = MkUSD 107_000
               }
             ( replicate 13
                 ( MkNonChiefStaff
                   ( SingerTeamStaff
                       ( ProducerStaff
                           MkWorker
-                            { name = "Jozeppo Bernini"
-                            , outcome = MkUSD 70_000
-                            , salary = MkUSD 60_000
+                            { workerName = "Jozeppo Bernini"
+                            , workerOutcome = MkUSD 70_000
+                            , workerSalary = MkUSD 60_000
                             }
                           ( SingerStaff
                               MkWorker
-                                { name = "Polly 'Benis' Bankova"
-                                , outcome = MkUSD 127_246_889
-                                , salary = MkUSD 78_000
+                                { workerName = "Polly 'Benis' Bankova"
+                                , workerOutcome = MkUSD 127_246_889
+                                , workerSalary = MkUSD 78_000
                                 }
                           )
                           ( ManagerStaff
                               MkWorker
-                                { name = "Ginat Ball"
-                                , outcome = MkUSD 30_000
-                                , salary = MkUSD 12_000
+                                { workerName = "Ginat Ball"
+                                , workerOutcome = MkUSD 30_000
+                                , workerSalary = MkUSD 12_000
                                 }
                               [ PRStaff
                                   MkWorker
-                                    { name = "Rob Smith"
-                                    , outcome = MkUSD 78_980
-                                    , salary = MkUSD 9_000
+                                    { workerName = "Rob Smith"
+                                    , workerOutcome = MkUSD 78_980
+                                    , workerSalary = MkUSD 9_000
                                     }
                               , PRStaff
                                   MkWorker
-                                    { name = "Morris Crock"
-                                    , outcome = MkUSD 45_890
-                                    , salary = MkUSD 6_800
+                                    { workerName = "Morris Crock"
+                                    , workerOutcome = MkUSD 45_890
+                                    , workerSalary = MkUSD 6_800
                                     }
                               ]
                               [ AdvertiserStaff
                                   MkWorker
-                                    { name = "Morris Crock"
-                                    , outcome = MkUSD 45_890
-                                    , salary = MkUSD 6_800
+                                    { workerName = "Morris Crock"
+                                    , workerOutcome = MkUSD 45_890
+                                    , workerSalary = MkUSD 6_800
                                     }
                               , AdvertiserStaff
                                   MkWorker
-                                    { name = "Helen Crock"
-                                    , outcome = MkUSD 20_000
-                                    , salary = MkUSD 3_800
+                                    { workerName = "Helen Crock"
+                                    , workerOutcome = MkUSD 20_000
+                                    , workerSalary = MkUSD 3_800
                                     }
                               , AdvertiserStaff
                                   MkWorker
-                                    { name = "Dmitriy Begulya"
-                                    , outcome = MkUSD 55_000
-                                    , salary = MkUSD 8_000
+                                    { workerName = "Dmitriy Begulya"
+                                    , workerOutcome = MkUSD 55_000
+                                    , workerSalary = MkUSD 8_000
                                     }
                               , AdvertiserStaff
                                   MkWorker
-                                    { name = "Jesus Christ"
-                                    , outcome = MkUSD 2_000
-                                    , salary = MkUSD 300
+                                    { workerName = "Jesus Christ"
+                                    , workerOutcome = MkUSD 2_000
+                                    , workerSalary = MkUSD 300
                                     }
                               ]
                               [ SoundEngineerStaff
                                   MkWorker
-                                    { name = "Listen Ya"
-                                    , outcome = MkUSD 80_000
-                                    , salary = MkUSD 7_000
+                                    { workerName = "Listen Ya"
+                                    , workerOutcome = MkUSD 80_000
+                                    , workerSalary = MkUSD 7_000
                                     }
                               ]
                           )
