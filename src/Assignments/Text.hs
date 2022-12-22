@@ -71,7 +71,7 @@ byTemplate2 "Bob" "Charlie" "George" = "Hi, my dear friend Bob. Charlie have mar
 byTemplate2 "Gregory" "Eelon Musk" "you" = "Hi, my dear friend Gregory. Eelon Musk have married you?"
 -}
 
-byTemplate2 :: String -> String -> String
+byTemplate2 :: String -> String -> String -> String
 byTemplate2 = undefined
 
 -- * Assignment 3

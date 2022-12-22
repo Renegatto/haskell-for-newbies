@@ -109,7 +109,9 @@ library learningHaskell-lib
       Assignments.Substitution
       Assignments.Text
       Assignments.Rec
+      Assignments.Data
       Text
+      Data
       Substitution
       Pets
       APrelude
