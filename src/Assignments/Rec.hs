@@ -118,6 +118,9 @@ NonEmpty.head (>)
   (>) :: NonEmpty a
 @-}
 
+-- >>> error "boi" + 6
+-- boi
+
 -- эта функция - не пример, а инструмент
 max' = \a b -> if_then_else (a > b) a b
 
@@ -133,7 +136,14 @@ fac 6 = 1 * 2 * 3 * 4 * 5 * 6
 @-}
 
 fac :: Integer -> Integer
-fac = undefined
+fac = \n -> if_then_else (n > 0) (n * fac (n-1)) 1
+
+-- >>> fac 6
+-- 720
+
+
+
+
 
 {-@ -- Assignment 4
 
@@ -144,19 +154,15 @@ smallerBy (< 5) -45456 = -45456
 @-}
 
 smallerBy :: (Integer -> Bool) -> Integer -> Integer
-smallerBy = undefined
-{-@ -- Assignment 5
+smallerBy = \ p n -> if_then_else (p n) n (smallerBy p (n - 1)) 
 
--- Given a (satisfiable) predicate on a number, finds closest to 0 number that satisfies it
-closestBy (< 5) = 4
-closestBy (== 19) = 19
-closestBy (>= -38) = -38
-closestBy (\x -> x /= x) = -- never terminates
+-- >>> smallerBy (< 7) 90
+-- 6
 
-@-}
 
 interval :: Double -> (Double -> Bool, Double -> Bool)
 interval n = ((<= n), (>= n))
+
 
 {-@ -- Assignment 5 (yeah boi!)
 
