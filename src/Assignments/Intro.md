@@ -12,17 +12,17 @@ For example, function `subtractFive` that subtracts `5` from it's argument:
 `35` = `subtractFive 40`
 
 
-Another example is a function `sub` that performs addition of two numbers.
+Another example is a function `add` that performs addition of two numbers.
 
-`sub 3 5` = `8`
+`add 3 5` = `8`
 
-`sub 10 2` = `12`
+`add 10 2` = `12`
 
-`35` = `sub 31 4`
+`35` = `add 31 4`
 
-`76` = `sub 68 8`
+`76` = `add 68 8`
 
-`sub 0 7` = `7`
+`add 0 7` = `7`
 
 `f a` called *application* of argument `a` to a function `f`.
 For example `subtractFive 8` is application of argument `8` to a function `subtractFive`.
@@ -137,7 +137,7 @@ Type :: Type -- yeah, boi... Do you wanna see how deep rabbit hole is?
 
 # Type constructors
 Types can be constructed via **type constructors**.
-All type constructors in Haskell must start from uppercase level:
+All type constructors in Haskell must start from uppercase letter:
 ```hs
 Int -- this is okay
 int -- this is not
