@@ -92,13 +92,13 @@ closestBy (\x -> x /= x) = -- never terminates
 -- and second tells whether given number is less or equal to,
 -- finds a number that satisfies both (if any)
 
--- $uncurry inInterval (exact a) = a$
+-- ∀ α. uncurry inInterval (exact α) ≡ α
 
 uncurry inInterval (exact 6) = 6
 uncurry inInterval (exact 78) = 78
 uncurry inInterval (exact -10) = -10
 
--- $uncurry inInterval (range a b) ∈ (a; b)$
+-- ∀ α β. α ≤ β ⇒ uncurry inInterval (range α β) ∈ [α;β]
 
 let x = uncurry inInterval (range 10 36)
 in x >= 10, x <= 26
@@ -112,7 +112,7 @@ in x >= 15, x <= 50
 exact :: Double -> (Double -> Bool, Double -> Bool)
 exact n = ((<= n), (>= n))
 
--- | `range a b` creates a pair of predicates, that defines an interval `(a;b)`
+-- | `range a b` creates a pair of predicates, that defines an interval [a;b]
 range :: Double -> Double -> (Double -> Bool, Double -> Bool)
 range lowest highest = ((>= lowest),(<= highest))
 
