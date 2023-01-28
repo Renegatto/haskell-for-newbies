@@ -258,7 +258,12 @@ Has 8 awards from world-famous 3D-visualisation competitions.
 
 -}
 gennadiy :: Teacher
-gennadiy = undefined
+gennadiy = SomeTeacher
+  { teacherName = "Gena"
+  , teacherWorkingExperience = 13
+  , teacherAchievements = []
+  , teacherAge = 56
+  }
 
 {- We define teacher performance as amount of learning stages multiplied by
  the average student performance divided by number of current learning stage.
@@ -304,7 +309,18 @@ groupVisualisators currentStage teacher (firstStudent : otherStudents) =
 -}
 
 groupNewbies :: [Teacher] -> [Student] -> [Visualisators]
-groupNewbies = undefined
+groupNewbies [] _ = []
+groupNewbies _ [] = []
+groupNewbies teachers newbies =
+  catMaybes $
+  zipWith (groupVisualisators IntroToVisualisation)
+    (sortOn teacherAge teachers)
+    (chunksOf studentsPerGroup $ sortOn studentAge newbies)
+  where
+    studentsPerGroup :: Int
+    studentsPerGroup = ceiling $
+      fromIntegral (length newbies) /
+      fromIntegral (length teachers)
 
 chunksOf :: Int -> [a] -> [[a]]
 chunksOf chunkSize =
