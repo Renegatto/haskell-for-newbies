@@ -6,9 +6,19 @@
 {-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE DerivingVia #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE TypeApplications #-}
 module Finances where
 import Data.Kind (Type, Constraint)
-import Finances.Types (USD (MkUSD), Worker (MkWorker, workerName, workerOutcome, workerSalary))
+import Finances.Types (USD (MkUSD),
+  Worker (MkWorker, workerName, workerOutcome, workerSalary))
+import Data.List (group, sort)
+import Data.Function (on)
+import Control.Applicative (Applicative(liftA2))
+import Data.Maybe (listToMaybe)
+import Control.Monad ((<=<))
+import Data.List.NonEmpty (nonEmpty, NonEmpty)
+import Data.Foldable (maximumBy)
 
 type Post :: Type
 data Post
@@ -34,65 +44,78 @@ type TeamStaff :: TeamPost -> Type
 data TeamStaff t where
   ProducerStaff
     :: Worker
-    -> TeamStaff Singer
-    -> TeamStaff Manager
-    -> TeamStaff Producer
+    -> TeamStaff 'Singer
+    -> TeamStaff 'Manager
+    -> TeamStaff 'Producer
   SingerStaff
     :: Worker
-    -> TeamStaff Singer
+    -> TeamStaff 'Singer
   ManagerStaff
     :: Worker
-    -> [TeamStaff PR]
-    -> [TeamStaff Advertiser]
-    -> [TeamStaff SoundEngineer]
-    -> TeamStaff Manager
+    -> [TeamStaff 'PR]
+    -> [TeamStaff 'Advertiser]
+    -> [TeamStaff 'SoundEngineer]
+    -> TeamStaff 'Manager
   PRStaff
     :: Worker
-    -> TeamStaff PR 
+    -> TeamStaff 'PR 
   AdvertiserStaff
     :: Worker
-    -> TeamStaff Advertiser
+    -> TeamStaff 'Advertiser
   SoundEngineerStaff
     :: Worker
-    -> TeamStaff SoundEngineer
+    -> TeamStaff 'SoundEngineer
 
 asTeamWorker :: TeamStaff post -> Worker
-asTeamWorker = undefined
+asTeamWorker = \case
+  ProducerStaff worker _ _ -> worker
+  SingerStaff worker -> worker
+  ManagerStaff worker _ _ _ -> worker
+  PRStaff worker -> worker
+  AdvertiserStaff worker -> worker
+  SoundEngineerStaff worker -> worker
 
 type Staff :: Post -> Type
 data Staff post where
   DirectorsStaff
     :: Worker
-    -> Staff CEO
-    -> Staff Directors
+    -> Staff 'CEO
+    -> Staff 'Directors
   CEOStaff
     :: Worker
-    -> Staff CFO
-    -> Staff COO
-    -> Staff CEO
+    -> Staff 'CFO
+    -> Staff 'COO
+    -> Staff 'CEO
   CFOStaff
     :: Worker
-    -> [Staff FinAnalityst]
-    -> [Staff Accountant]
-    -> Staff CFO
+    -> [Staff 'FinAnalityst]
+    -> [Staff 'Accountant]
+    -> Staff 'CFO
   COOStaff
     :: Worker
     -> [NonChiefStaff]
-    -> Staff COO
+    -> Staff 'COO
   AnalitystStaff
     :: Worker
-    -> Staff FinAnalityst
+    -> Staff 'FinAnalityst
   AccountantStaff
     :: Worker
-    -> Staff Accountant
+    -> Staff 'Accountant
   SingerTeamStaff
-    :: TeamStaff Producer
-    -> Staff Team
+    :: TeamStaff 'Producer
+    -> Staff 'Team
 
 asWorker :: Staff post -> Worker
-asWorker = undefined
+asWorker = \case
+  DirectorsStaff worker _ -> worker
+  CEOStaff worker _ _ -> worker
+  CFOStaff worker _ _ -> worker
+  COOStaff worker _ -> worker
+  AnalitystStaff worker -> worker
+  AccountantStaff worker -> worker
+  SingerTeamStaff worker -> asTeamWorker worker
 
-instance NonChief Team
+instance NonChief 'Team
 
 type NonChiefStaff :: Type
 data NonChiefStaff = forall (post :: Post). NonChief post =>
@@ -229,5 +252,15 @@ singingCrickets =
             )
         )
     )
+maximumMaybeBy :: forall a. (a -> a -> Ordering) -> [a] -> Maybe a
+maximumMaybeBy f = fmap (maximumBy @NonEmpty f) . nonEmpty
+  -- `maximumBy @NonEmpty` can't fail. Never.
+
+mostFrequent :: Ord a => [a] -> Maybe a
+mostFrequent =
+  listToMaybe
+    <=< maximumMaybeBy (compare `on` length)
+    . group
+    . sort
 
 

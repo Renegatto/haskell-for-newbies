@@ -1,15 +1,12 @@
 {-# LANGUAGE DataKinds #-}
+
 module Assignments.Finances where
-import Finances (Staff,  Post(Directors))
+
+import Finances (Post (Directors), Staff)
 import Finances.Types
-  ( USD
-  , Worker
-    ( MkWorker
-    , workerName
-    , workerOutcome
-    , workerSalary
-    )
-  , Performance (MkPerformance, outcome,salary)
+  ( Performance (MkPerformance, pOutcome, pSalary),
+    USD,
+    Worker (workerOutcome, workerSalary),
   )
 
 averageSalary :: [Worker] -> USD
@@ -21,10 +18,12 @@ performanceOf = undefined
 workersNames :: [Worker] -> [String]
 workersNames = undefined
 
-{- |
-Average name is defined as the most frequent name (if any)
-For the rest of properties average is obvious
--}
+-- |
+-- Average name is defined as the most frequent name (if any)
+-- For the rest of properties average is obvious
+mostFrequentWorkerName :: [Worker] -> String
+mostFrequentWorkerName = undefined
+
 averageWorker :: [Worker] -> Worker
 averageWorker = undefined
 

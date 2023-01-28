@@ -1,7 +1,6 @@
 {-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE DerivingVia #-}
-{-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE StandaloneKindSignatures #-}
 module Finances.Types (USD (..), Worker(..), Performance (..)) where
 import Data.Kind (Type)
@@ -14,8 +13,8 @@ newtype USD = MkUSD { getUSD :: Double }
 type Performance :: Type
 data Performance =
   MkPerformance
-  { outcome :: USD
-  , salary :: USD
+  { pOutcome :: USD
+  , pSalary :: USD
   }
   deriving stock (Eq,Show)
 

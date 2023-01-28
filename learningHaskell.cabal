@@ -108,8 +108,11 @@ library learningHaskell-lib
       Assignments.Pets
       Assignments.Substitution
       Assignments.Text
+      Assignments.Finances
       Text
       Substitution
+      Finances
+      Finances.Types
       Pets
       APrelude
  

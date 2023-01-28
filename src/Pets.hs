@@ -177,7 +177,7 @@ condition animal =
     , conditionBySatiety
     , conditionByRest ]
 
-feed foodSort kg {-MkFood {foodSort,kg}-} pet@Animal {sort,satiety} =
+feed foodSort kg pet@Animal {sort,satiety} =
   pet { satiety = satiety + satiety' }
   where 
     satiety' :: Coeff
@@ -266,9 +266,9 @@ randomPet :: IO Pet
 randomPet = do
   name <- randomName
   sort <- genPetSort
-  let sized :: forall m. Monad m => m Coeff -> m Coeff
-      sized = fmap $ (*) (petSizeCoeff sort)
-  thirst <- sized $ randomRIO (-2,2)
-  satiety <- sized $ randomRIO (-5,3)
-  rest <- sized $ randomRIO (-8,8)
+  let sized :: Coeff -> Coeff
+      sized = (* petSizeCoeff sort)
+  thirst <- sized <$> randomRIO (-2,2)
+  satiety <- sized <$> randomRIO (-5,3)
+  rest <- sized <$> randomRIO (-8,8)
   pure $ Animal { .. }
