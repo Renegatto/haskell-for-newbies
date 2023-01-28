@@ -86,32 +86,40 @@ closestBy (\x -> x /= x) = -- never terminates
 
 @-}
 
-interval :: Double -> (Double -> Bool, Double -> Bool)
-interval n = ((<= n), (>= n))
-
 {-@ -- Assignment 5 (yeah boi!)
 
 -- Given a pair of predicates,
--- where first tells if given number is less or equal to,
--- and second tells whether given number is greater or equal to,
+-- where first tells if given number is greater or equal to,
+-- and second tells whether given number is less or equal to,
 -- finds a number that satisfies both (if any)
 
-inInterval (interval 6) = 6
-inInterval (interval 78) = 78
-inInterval (interval -10) = -10
+-- $uncurry inInterval (exact a) = a$
 
-let x = inInterval (<= 10, >= 36)
-in x <= 10, x >= 36
+uncurry inInterval (exact 6) = 6
+uncurry inInterval (exact 78) = 78
+uncurry inInterval (exact -10) = -10
 
-let x = inInterval (>= 36, <= 10)
-in x <= 10, x >= 36
+-- $uncurry inInterval (range a b) ∈ (a; b)$
+
+let x = uncurry inInterval (range 10 36)
+in x >= 10, x <= 26
+
+let x = uncurry inInterval (range -50 15)
+in x >= 15, x <= 50
 
 @-}
 
+-- | `exact a` creates a pair of predicates, that defines a value `a`
+exact :: Double -> (Double -> Bool, Double -> Bool)
+exact n = ((<= n), (>= n))
+
+-- | `range a b` creates a pair of predicates, that defines an interval `(a;b)`
+range :: Double -> Double -> (Double -> Bool, Double -> Bool)
+range lowest highest = ((>= lowest),(<= highest))
+
 inInterval
-  :: (Double -> Bool) -- ^ if given value is greater than desired one
-  -> (Double -> Bool) -- ^ if given value is less than desired one
-  -> (Double -> Bool) -- ^ if given value is exactly desired one
+  :: (Double -> Bool) -- ^ if given value is greater or equal than desired one
+  -> (Double -> Bool) -- ^ if given value is less or equal to desired one
   -> Double
 inInterval gt lt eq = go lt gt eq 0 10000
   where
