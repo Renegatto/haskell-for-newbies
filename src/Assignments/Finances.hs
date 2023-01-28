@@ -18,7 +18,6 @@ performanceOf = undefined
 workersNames :: [Worker] -> [String]
 workersNames = undefined
 
--- |
 -- Average name is defined as the most frequent name (if any)
 -- For the rest of properties average is obvious
 mostFrequentWorkerName :: [Worker] -> String
