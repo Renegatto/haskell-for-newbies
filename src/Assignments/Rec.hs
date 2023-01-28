@@ -121,12 +121,12 @@ inInterval
   :: (Double -> Bool) -- ^ if given value is greater or equal than desired one
   -> (Double -> Bool) -- ^ if given value is less or equal to desired one
   -> Double
-inInterval gt lt eq = go lt gt eq 0 10000
+inInterval geq leq = go leq geq 0 10000
   where
-    go :: forall a. Fractional a => (a -> Bool) -> (a -> Bool) -> (a -> Bool) -> a -> a -> a
-    go shouldContinue shouldGoBack enough value step =
-      if enough value then value else
-        if shouldContinue value -- we've been going upward
-        then go shouldContinue shouldGoBack enough (value + step) step
-        else go shouldGoBack shouldContinue enough value (negate $ step / 2)
+    go :: forall a. Fractional a => (a -> Bool) -> (a -> Bool) -> a -> a -> a
+    go leq geq value step =
+      if leq value && geq value then value else
+        if leq value -- we've been going upward
+        then go leq geq (value + step) step
+        else go geq leq value (negate step / 2)
        
