@@ -3,18 +3,20 @@
 {-# OPTIONS_GHC -Wno-missing-kind-signatures #-}
 module Assignments.Data where
 import Data.Kind (Type)
+import APrelude (if_then_else)
 
 --------------------------------------
 -- This is how we define the datatype:
 
 data MyDataName =
-  MyDataConstructor1 | MyDataConstructor2 | MyDataConstructor3 -- it has three constructors
+  MyDataCons666tructor1 | MyDataConstructor2 | MyDataConstructor3
+  -- it has three constructors
 
 -- this brings into our scope all three data constructors. For example:
-_ = MyDataConstructor1 :: MyDataName
+_ = MyDataCons666tructor1 :: MyDataName
 
 example1 :: MyDataName
-example1 = MyDataConstructor1 -- this is an instance of MyDataName
+example1 = MyDataCons666tructor1 -- this is an instance of MyDataName
 
 example2 :: MyDataName
 example2 = MyDataConstructor2 -- this too
@@ -22,7 +24,7 @@ example2 = MyDataConstructor2 -- this too
 -- we can use it as regular data, for example
 -- here we put it into a list and reverse this list
 example3 :: [MyDataName] 
-example3 = reverse [MyDataConstructor1,MyDataConstructor2]
+example3 = reverse [MyDataCons666tructor1,MyDataConstructor2]
 
 -- >>> deriving instance Show MyDataName -- we need this to print out MyDataName terms
 -- >>> example3
@@ -37,7 +39,8 @@ example3 = reverse [MyDataConstructor1,MyDataConstructor2]
 
 -}
 
-
+data Animal =
+  Dog | Cat | Turtle | Rat | Mouse | Fish | Canary
 
 {- ---------------------------
 
@@ -47,21 +50,21 @@ example3 = reverse [MyDataConstructor1,MyDataConstructor2]
 
 -}
 
-mikkieTheCat :: _
-mikkieTheCat = undefined
+mikkieTheCat :: Animal
+mikkieTheCat = Cat
 
-mikeTheDog :: _
-mikeTheDog = undefined
+mikeTheDog :: Animal
+mikeTheDog = Dog
 
-jacklineTheFish :: _
-jacklineTheFish = undefined
+jacklineTheFish :: Animal
+jacklineTheFish = Fish
 
-jackTheDog :: _
-jackTheDog = undefined
+jackTheDog :: Animal
+jackTheDog = Dog
 
 -- Sandra has a dog Jack and a cat Mikkie
-sandraPets :: [_]
-sandraPets = undefined
+sandraPets :: [Animal]
+sandraPets = [jackTheDog, mikkieTheCat]
 
 ---------------------------
 -- You also can pattern-match your datatypes in functions.
@@ -119,8 +122,24 @@ isItOneOrThree _ = "Nope, it's something else"
 -}
 
 -- | How much given animal eats Kg of food per day
-eatsKgOfFoodPerDay :: _ -> Float
-eatsKgOfFoodPerDay = undefined
+eatsKgOfFoodPerDay :: Animal -> Float
+eatsKgOfFoodPerDay Dog = 7
+eatsKgOfFoodPerDay Cat = 1
+eatsKgOfFoodPerDay Turtle = 3
+eatsKgOfFoodPerDay Rat = 0.3
+eatsKgOfFoodPerDay Mouse = 0.2
+eatsKgOfFoodPerDay Fish = 0.003
+eatsKgOfFoodPerDay Canary = 0.1
+
+eatsKgOfFoodPerDay' :: Animal -> Float
+eatsKgOfFoodPerDay' animal = case animal of
+  Dog -> 7
+  Cat -> 1
+  Turtle -> 3
+  Rat -> 0.3
+  Mouse -> 0.2
+  Fish -> 0.003
+  Canary -> 0.1
 
 {- ---------------------------
 
@@ -131,8 +150,11 @@ eatsKgOfFoodPerDay = undefined
 -}
 
 -- | Whether certain kind of animals sheds or not
-sheds :: _ -> Bool
-sheds = undefined
+
+sheds :: Animal -> Bool
+sheds Dog = True
+sheds Cat = True
+sheds _ = False
 
 ---------------------------
 -- Data constructors may have arguments.
@@ -156,8 +178,14 @@ data NextStepToCatch
 
 -- | Given maybe photo and spotted intruder data, calculates what to do to catch villain
 nextStepToCatch :: Maybe Photo -> SpottedIntruder -> NextStepToCatch
-nextStepToCatch = undefined
- 
+nextStepToCatch (Just photo) _ = 
+  PutInWantedList photo
+nextStepToCatch _ (IdentifiedAs citizenIdentityNumber) = 
+  AmbushAtRegistrationAddress citizenIdentityNumber
+nextStepToCatch _ _ = 
+  ApologizeAndWaitForNewCrimes
+
+
 -- It's not important what's here, you don't need it.
 data CitizenIdentityNumber = EuropeanFormat Integer | RussianFormat String 
 data Photo = BitmapImage [[(Float,Float,Float)]]
