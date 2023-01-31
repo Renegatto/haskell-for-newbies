@@ -1,9 +1,12 @@
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE StandaloneKindSignatures #-}
 {-# OPTIONS_GHC -Wno-missing-kind-signatures #-}
+{-# LANGUAGE DerivingStrategies #-}
 module Assignments.Data where
 import Data.Kind (Type)
-import APrelude (if_then_else)
+import Data.Maybe (catMaybes)
+import Data.Function (on)
+import Data.List (groupBy, sortBy, sortOn)
 
 --------------------------------------
 -- This is how we define the datatype:
@@ -189,3 +192,150 @@ nextStepToCatch _ _ =
 -- It's not important what's here, you don't need it.
 data CitizenIdentityNumber = EuropeanFormat Integer | RussianFormat String 
 data Photo = BitmapImage [[(Float,Float,Float)]]
+
+
+
+--------------------------
+-- RECORD SYNTAX
+
+
+
+data LearningStage
+  = IntroToVisualisation
+  | MarketingLearning
+  | EarningMarathon
+  deriving stock Show
+
+{-
+ By use of "record syntax" we may ask Haskell
+to generate field accessors for our datatype
+
+-}
+
+data Visualisators = VisualisatorsGroup
+  { curator :: Teacher, captain :: Student,
+    students :: [Student],
+    stage :: LearningStage
+  }
+  deriving stock Show
+
+-- | Now we have in scope a bunch of functions
+-- that ease the data access of this record type:
+_ = curator :: Visualisators -> Teacher
+_ = stage :: Visualisators -> LearningStage
+
+
+data Teacher = SomeTeacher
+  { teacherName :: String
+  , teacherWorkingExperience :: Int 
+  , teacherAchievements :: [String]
+  , teacherAge :: Int
+  }
+  deriving stock Show
+
+data Student = MkStudent
+  { studentName :: String
+  , studentAge :: Int
+  , studentPerformance :: Float
+  }
+  deriving stock Show
+
+age :: Either Teacher Student -> Int
+-- We may use `teacherAge` field accessor to extract age field
+age (Left teacher) = teacherAge teacher
+-- Or we may use the field name in pattern-matching to extract the field
+age (Right MkStudent { studentAge = theAge }) = theAge
+
+name :: Either Teacher Student -> String
+name = undefined
+
+captainAge :: Visualisators -> Int
+-- field accessors are function and we can compose them
+captainAge = studentAge . captain
+
+curatorName :: Visualisators -> String
+curatorName = undefined
+
+polina :: Student
+{- We can construct records completely ignoring record syntax
+ But this way you should keep in mind the fields order and meaning,
+ which is complicated.
+-}
+polina = MkStudent "Polina" 18 0
+
+maxim :: Student
+{- Instead, we can use record syntax.
+ It's more easy to understand what those values means, isn't it?
+ Note also, that since fields are named, when we create the term
+ using record syntax we don't care about fields order.
+-}
+maxim = MkStudent
+  { studentName = "Maksim Skvorcov",
+    studentPerformance = 0.56,
+    studentAge = 28
+  }
+
+{-
+
+Strelkov Gennadiy Petrovich,
+born in 1987,
+working as 3D visualisation teacher since 2018,
+3 of his students opened their businesses after he taught them.
+Has 8 awards from world-famous 3D-visualisation competitions.
+
+-}
+gennadiy :: Teacher
+gennadiy = undefined
+
+{- We define teacher performance as amount of learning stages multiplied by
+ the average student performance divided by number of current learning stage.
+-}
+teacherPerformance :: Visualisators -> Float
+teacherPerformance = undefined
+
+{- | Given the learning group and the student name,
+returns the student learning stage, if student is in given learning group.
+-}
+studentStage :: Visualisators -> String -> Maybe LearningStage
+studentStage = undefined 
+
+-- Note that we can also pattern-match against constructors that are operators.
+groupVisualisators :: LearningStage -> Teacher -> [Student] -> Maybe Visualisators
+-- Here we pattern-match empty list
+groupVisualisators _ _ [] = Nothing
+-- And here we pattern-match list that has the first element (firstStudent).
+groupVisualisators currentStage teacher (firstStudent : otherStudents) =
+  Just
+    (VisualisatorsGroup
+      { curator = teacher
+      , captain = firstStudent
+      , students = otherStudents
+      , stage = currentStage
+      })
+
+
+{- ---------------------------
+
+  Assignment 6
+
+  Group new students.
+
+  There are several criterias we guided by when grouping students:
+  - The higher student age - the higher teacher age must be
+  - Difference in student's age inside the group must be minimized
+  - Each teacher must have a students if it's possible
+  - All groups must have equal size or close to it
+
+  Hints: use hoogle, especially module `Data.List`, `Prelude`, `Data.Maybe` and friends.
+
+-}
+
+groupNewbies :: [Teacher] -> [Student] -> [Visualisators]
+groupNewbies = undefined
+
+chunksOf :: Int -> [a] -> [[a]]
+chunksOf chunkSize =
+  fmap (fmap snd)
+  . groupBy ((==) `on` fst)
+  . zip (replicate chunkSize =<< [0 :: Int ..])
+
