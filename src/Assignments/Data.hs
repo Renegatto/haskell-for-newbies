@@ -272,6 +272,8 @@ returns the student learning stage, if student is in given learning group.
 studentStage :: Visualisators -> String -> Maybe LearningStage
 studentStage = undefined 
 
+---- More on pattern-matching!
+
 -- Note that we can also pattern-match against constructors that are operators.
 groupVisualisators :: LearningStage -> Teacher -> [Student] -> Maybe Visualisators
 -- Here we pattern-match empty list
@@ -286,6 +288,35 @@ groupVisualisators currentStage teacher (firstStudent : otherStudents) =
       , stage = currentStage
       })
 
+-- | The function that extracts first student from list of students, if any.
+-- CONSTRAINTS: do not use any functions in the definition, except of constructors. 
+veryFirstStudent :: [Student] -> Maybe Student
+veryFirstStudent = undefined
+
+-- | The function that returns three first students, if there is any
+firstThreeStudents :: [Student] -> Maybe (Student,Student,Student)
+firstThreeStudents = undefined
+
+{-
+  If list contains exactly one element - return it.
+  If it contains more than two - return all of them.
+  If it contains exactly two - throw them away!
+
+  CONSTRAINT - do not use any functions except constructors, do not use list-syntax patterns
+-}
+eitherOneOrMoreThanTwo :: [a] -> Maybe (Either a [a])
+eitherOneOrMoreThanTwo = undefined
+
+{-
+
+FYI, for lists haskell allows to pattern-match on list-syntax:
+
+-}
+
+-- | Checks whether list contains exactly four elements or not
+listOfFourElements :: [a] -> Bool
+listOfFourElements [_,_,_,_] = True
+listOfFourElements _ = False
 
 {- ---------------------------
 
