@@ -1,4 +1,9 @@
-module Assignments.Pets (result, i'mReadyForNextTask, makePetFeelGood) where
+module Assignments.Pets
+  ( result
+  , firstAssignmentIsReady
+  , i'mReadyForNextTask
+  , makePetFeelGood
+  ) where
 
 import Pets (
   -- Pets
@@ -34,6 +39,10 @@ import APrelude (if_then_else)
 
 -- * First assignment
 -- is to make those pets feels good
+
+firstAssignmentIsReady :: Bool
+firstAssignmentIsReady = False
+
 result :: (Pet, Pet)
 result = (happyJohn,happyAqua)
 
