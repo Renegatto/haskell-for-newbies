@@ -74,6 +74,9 @@ byTemplate2 "Bob" "Charlie" "George" = "Hi, my dear friend Bob. Charlie have mar
 byTemplate2 "Gregory" "Eelon Musk" "you" = "Hi, my dear friend Gregory. Eelon Musk have married you?"
 -}
 
+assignment2bIsReady :: Bool
+assignment2bIsReady = False
+
 byTemplate2 :: String -> String -> String -> String
 byTemplate2 = undefined
 
@@ -107,7 +110,7 @@ phrasesByTemplate = undefined
 Напиши функцию weirdTemplate, которая:
 - принимает список имён
 - добавляет приставку "Sir" ("Ivan" |-> "Sir Ivan") ко всем именам
-- возвращает список всех получившихся фраз для этих имен, которые короче 49 символов
+- возвращает список всех получившихся фраз для этих имен, которые короче 57 символов
 -}
 
 assignment4IsReady :: Bool
