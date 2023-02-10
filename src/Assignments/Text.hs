@@ -63,6 +63,9 @@ byTemplate "Bob" = "Hi, my dear friend Bob. Ignat have married Sergey?"
 byTemplate "Gregory" = "Hi, my dear friend Gregory. Ignat have married Sergey?"
 -}
 
+assignment2aIsReady :: Bool
+assignment2aIsReady = False
+
 byTemplate :: String -> String
 byTemplate = undefined
 
@@ -84,6 +87,9 @@ phrasesByTemplate ["Vitya","tanya","Cook"] =
   , "Hi, my dear friend Cook. Ignat have married Sergey?" ]
 -}
 
+assignment3IsReady :: Bool
+assignment3IsReady = False
+
 -- | является ли символ (Char) прописной буквой
 _ = isUpper :: Char -> Bool 
 _ = filter :: forall a. (a -> Bool) -> [a] -> [a]
@@ -103,6 +109,10 @@ phrasesByTemplate = undefined
 - добавляет приставку "Sir" ("Ivan" |-> "Sir Ivan") ко всем именам
 - возвращает список всех получившихся фраз для этих имен, которые короче 49 символов
 -}
+
+assignment4IsReady :: Bool
+assignment4IsReady = False
+
 _ = length :: forall a. [a] -> Int
 
 dontTouch1 :: forall a. Ord a => a -> a -> Bool

@@ -70,7 +70,7 @@ common common-lang
     -- GeneralisedNewtypeDeriving
     -- HexFloatLiterals
     -- ImplicitPrelude
-    -- ImportQualifiedPost
+    ImportQualifiedPost
     -- InstanceSigs
     -- KindSignatures
     -- LambdaCase
@@ -125,6 +125,7 @@ library learningHaskell-lib
     hs-source-dirs:   src
 
 executable learningHaskell
+    import: common-lang
     main-is:          Main.hs
     ghc-options: -threaded -with-rtsopts=-N
     
