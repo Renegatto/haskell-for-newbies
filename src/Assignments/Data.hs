@@ -161,6 +161,9 @@ data NextStepToCatch
 -- | Given maybe photo and spotted intruder data, calculates what to do to catch villain
 nextStepToCatch :: Maybe Photo -> SpottedIntruder -> NextStepToCatch
 nextStepToCatch = undefined
+
+nextStepToCatchIsReady :: Bool
+nextStepToCatchIsReady = False
  
 -- It's not important what's here, you don't need it.
 data CitizenIdentityNumber = EuropeanFormat Integer | RussianFormat String 

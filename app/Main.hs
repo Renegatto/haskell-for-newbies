@@ -6,6 +6,15 @@ import Prelude
 import qualified Assignments.Text as Text
 import qualified Text as TestText
 import Data.Maybe (fromMaybe)
+import qualified Data as DataImpl
+import qualified Assignments.Data as Data
+
+testData :: IO ()
+testData = do
+  when Data.nextStepToCatchIsReady $
+    check
+      (pure DataImpl.test_nextStepToCatch)
+      (failTest "Data nextStepToCatch" Nothing)
 
 testText :: IO ()
 testText = do
@@ -51,6 +60,7 @@ main :: IO ()
 main = do
   putStrLn "yeah!"
   testText
+  testData
   testPets
 
 -- tools for testing

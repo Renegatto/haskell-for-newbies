@@ -16,7 +16,7 @@ module Data where
 import Data.Kind (Type)
 import Assignments.Data
 import Data.Functor.Contravariant (Predicate)
-import Data.Monoid (Any(Any), All(All))
+import Data.Monoid (Any(Any), All(All,getAll))
 
 nextStepToCatch' :: Maybe Photo -> SpottedIntruder -> NextStepToCatch
 _ = nextStepToCatch :: Maybe Photo -> SpottedIntruder -> NextStepToCatch
@@ -32,8 +32,8 @@ test_nextStepToCatch_is_valid = onMultiple @All prop_nextStepToCatch_is_valid
 -- >>> test
 -- All {getAll = False}
 
-test :: All
-test = test_nextStepToCatch_is_valid
+test_nextStepToCatch :: Bool
+test_nextStepToCatch = getAll $ test_nextStepToCatch_is_valid
   [ bmp []
   , Nothing
   , bmp [[(3,220,3)],[(30,255,0)]]
