@@ -310,11 +310,8 @@ firstThreeStudents = undefined
 eitherOneOrMoreThanTwo :: [a] -> Maybe (Either a [a])
 eitherOneOrMoreThanTwo = undefined
 
-{-
 
-FYI, for lists haskell allows to pattern-match on list-syntax:
-
--}
+-- For lists haskell allows to pattern-match on list-syntax:
 
 -- | Checks whether list contains exactly four elements or not
 listOfFourElements :: [a] -> Bool

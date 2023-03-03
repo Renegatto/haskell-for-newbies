@@ -4,7 +4,7 @@ import APrelude ()
 import Substitution ( f, g, h, f2, f3, e )
 
 -- * Substitution
--- Fulfill `e'` the way it will be the same as `e`
+-- Fulfill `c'` the way it will be the same as `c`
 -- But don't use names `c`, `b`, `a`
 
 c' :: Double
