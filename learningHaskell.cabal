@@ -110,6 +110,7 @@ library learningHaskell-lib
       Assignments.Text
       Assignments.Rec
       Assignments.Data
+      Assignments.Polymorphism
       Text
       Data
       Substitution
