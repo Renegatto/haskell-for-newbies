@@ -111,6 +111,7 @@ library learningHaskell-lib
       Assignments.Rec
       Assignments.Data
       Assignments.Polymorphism
+      Assignments.HomeAccounting
       Text
       Data
       Substitution
@@ -122,8 +123,24 @@ library learningHaskell-lib
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
-    build-depends: containers, random, time
+    build-depends:
+      containers, random, time
     hs-source-dirs:   src
+
+executable homeAccounting
+    import: common-lang
+    main-is:          HomeAccounting.hs
+    ghc-options: -threaded -with-rtsopts=-N
+    
+    -- Modules included in this executable, other than Main.
+    -- other-modules:
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:    base, learningHaskell-lib
+    -- ^>=4.12.0.0
+    hs-source-dirs:   app
+    default-language: Haskell2010
 
 executable learningHaskell
     import: common-lang
