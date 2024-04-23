@@ -17,16 +17,16 @@
               # `cabal`, `hlint` and `haskell-language-server`
               shell.tools = {
                 cabal = {};
-                hlint = {};
-                haskell-language-server = {};
+                # hlint = {};
+                # haskell-language-server = {};
               };
               # Non-Haskell shell tools go here
               shell.buildInputs = with pkgs; [
                 nixpkgs-fmt
               ];
-              hsPkgs = [
-                pkgs.haskellPackages.mtl
-              ];
+              # hsPkgs = [
+              #   pkgs.haskellPackages.mtl
+              # ];
               # This adds `js-unknown-ghcjs-cabal` to the shell.
               # shell.crossPlatforms = p: [p.ghcjs];
             };
