@@ -8,16 +8,21 @@
     let
       overlays = [ haskellNix.overlay
         (final: prev: {
+
           # This overlay adds our project to pkgs
           learningHaskell =
-            final.haskell-nix.project' {
+            builtins.trace final.haskell-nix.project'
+            (final.haskell-nix.project' {
               src = ./.;
               compiler-nix-name = "ghc925";
               # This is used by `nix develop .` to open a shell for use with
               # `cabal`, `hlint` and `haskell-language-server`
+              # cabal-install = {};
               shell.tools = {
                 cabal = {};
+                # fourmolu = {};
                 # hlint = {};
+                ghcid = {};
                 haskell-language-server = {};
               };
               # Non-Haskell shell tools go here
@@ -29,7 +34,7 @@
               # ];
               # This adds `js-unknown-ghcjs-cabal` to the shell.
               # shell.crossPlatforms = p: [p.ghcjs];
-            };
+            });
         })
       ];
       pkgs = import nixpkgs { inherit system overlays; inherit (haskellNix) config; };
@@ -39,6 +44,23 @@
       };
     in flake // {
       # Built by `nix build .`
+      devShells = pkgs.learningHaskell.shellFor {
+          cabal = {};
+          haskell-language-server = {};
+          # fourmolu = {};
+          # hlint = {};
+          ghcid = {};
+
+          nativeBuildInputs = [
+            pkgs.hlint
+          ];
+        }; 
+
+      # pkgs.mkShell {
+      #   nativeBuildInputs = [
+      #     pkgs.hlint
+      #   ];
+      # };
       packages.default = flake.packages."hello:exe:hello";
     });
 }
