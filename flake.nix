@@ -18,7 +18,7 @@
               shell.tools = {
                 cabal = {};
                 # hlint = {};
-                # haskell-language-server = {};
+                haskell-language-server = {};
               };
               # Non-Haskell shell tools go here
               shell.buildInputs = with pkgs; [
