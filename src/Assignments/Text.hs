@@ -1,25 +1,32 @@
-{-# LANGUAGE NoMonomorphismRestriction, ScopedTypeVariables #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE NoMonomorphismRestriction #-}
+
 module Assignments.Text where
 
-import Prelude
-  ( Int
-  , Num((+))
-  , ($)
-  , (.)
-  , print
-  , error
-  , Bool (True,False)
-  , Ord((>),(<),(>=),(<=))
-  , undefined
-  , Integer
-  , (*)
-  , (==)
-  , (++)
-  , (^)
-  , String, flip, filter, map, Char, Foldable (length)
-  )
 import Data.Char (isUpper)
 import Text (firstSatisfies)
+import Prelude
+  ( Bool (False, True),
+    Char,
+    Foldable (length),
+    Int,
+    Integer,
+    Num ((+)),
+    Ord ((<), (<=), (>), (>=)),
+    String,
+    error,
+    filter,
+    flip,
+    map,
+    print,
+    undefined,
+    ($),
+    (*),
+    (++),
+    (.),
+    (==),
+    (^),
+  )
 
 -- a -> b -> c = a -> (b -> c)
 -- a b c = ((a b) c)
@@ -40,8 +47,10 @@ bob = "Bob"
 
 -- To do:
 _ = "Hi, my dear friend Bob"
+
 _ = "Hi, my dear friend Bob. Ignat have married Sergey?"
-  -- actually, "Have Ignat married Sergey" would be more correct but...
+
+-- actually, "Have Ignat married Sergey" would be more correct but...
 
 -- | Поженились
 marry :: String -> (String -> String)
@@ -52,12 +61,13 @@ ask :: String -> String
 ask = \question -> concat question "?"
 
 finish :: String -> String
-finish = flip concat "." 
+finish = flip concat "."
 
 space :: String -> String -> String
 space = \a -> concat (concat a " ")
 
 -- * Assignment 2a
+
 {-
 byTemplate "Bob" = "Hi, my dear friend Bob. Ignat have married Sergey?"
 byTemplate "Gregory" = "Hi, my dear friend Gregory. Ignat have married Sergey?"
@@ -81,6 +91,7 @@ byTemplate2 :: String -> String -> String -> String
 byTemplate2 = undefined
 
 -- * Assignment 3
+
 {-
 Написякай функцию, которая берет на вход список имен и возвращает список фраз
 "by template" для тех имен, которые начинаются с большой буквы.
@@ -94,11 +105,15 @@ assignment3IsReady :: Bool
 assignment3IsReady = False
 
 -- | является ли символ (Char) прописной буквой
-_ = isUpper :: Char -> Bool 
+_ = isUpper :: Char -> Bool
+
 _ = filter :: forall a. (a -> Bool) -> [a] -> [a]
+
 _ = map :: forall a b. (a -> b) -> [a] -> [b]
+
 -- | удовлетворяет ли первый элемент списка условию
-_ = firstSatisfies :: forall a. (a -> Bool) -> [a] -> Bool 
+_ = firstSatisfies :: forall a. (a -> Bool) -> [a] -> Bool
+
 -- | оператор композиции функций. `(f . g) x = f (g x)`
 _ = (.) :: forall a b c. (b -> c) -> (a -> b) -> a -> c
 
@@ -106,6 +121,7 @@ phrasesByTemplate :: [String] -> [String]
 phrasesByTemplate = undefined
 
 -- * Assignment 4
+
 {-
 Напиши функцию weirdTemplate, которая:
 - принимает список имён
@@ -118,15 +134,19 @@ assignment4IsReady = False
 
 _ = length :: forall a. [a] -> Int
 
-dontTouch1 :: forall a. Ord a => a -> a -> Bool
+dontTouch1 :: forall a. (Ord a) => a -> a -> Bool
 dontTouch1 = (<)
-dontTouch2 :: forall a. Ord a => a -> a -> Bool
+
+dontTouch2 :: forall a. (Ord a) => a -> a -> Bool
 dontTouch2 = (<=)
-dontTouch3 :: forall a. Ord a => a -> a -> Bool
+
+dontTouch3 :: forall a. (Ord a) => a -> a -> Bool
 dontTouch3 = (>)
-dontTouch4 :: forall a. Ord a => a -> a -> Bool
+
+dontTouch4 :: forall a. (Ord a) => a -> a -> Bool
 dontTouch4 = (>=)
-dontTouch5 :: forall a. Ord a => a -> a -> Bool
+
+dontTouch5 :: forall a. (Ord a) => a -> a -> Bool
 dontTouch5 = (==)
 
 weirdTemplate :: [String] -> [String]
