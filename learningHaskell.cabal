@@ -111,6 +111,7 @@ library learningHaskell-lib
       Assignments.Rec
       Assignments.Data
       Assignments.Polymorphism
+      Assignments.SaveFishes
       Text
       Data
       Substitution
