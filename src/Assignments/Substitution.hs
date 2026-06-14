@@ -1,14 +1,23 @@
 module Assignments.Substitution where
 
 import APrelude ()
-import Substitution ( f, g, h, f2, f3, e )
+import Substitution (e, f, f2, f3, g, h, j, q)
 
 -- * Substitution
+
 -- Fulfill `c'` the way it will be the same as `c`
 -- But don't use names `c`, `b`, `a`
 
 c' :: Double
-c' = error "Not implemented :("
+c' = h (f b) a (f2 b)
+
+-- >>> c'
+-- 4.130931294011858e37
+
+-- >>> a
+
+-- >>> c
+-- 4.130931294011858e37
 
 c :: Double
 c = h (f b) a (f2 b)
@@ -17,9 +26,10 @@ b :: Int
 b = g (f2 e) (f3 e)
 
 a :: Int
-a = g (f2 a) (f3 a)
+a = g q (f3 e)
 
 -- * Operators to functions conversion
+
 -- Express `someBigExpression` without use of * and +
 
 add :: Int -> Int -> Int
@@ -51,7 +61,6 @@ a1 = "tak i "
 a2 :: String
 a2 = "poletela"
 
-
 resultOfConcat = error "Not implemented :("
 
 -- * Operations over concatenated strings
@@ -68,4 +77,3 @@ b2 :: String
 b2 = reverse "poletela"
 
 resultOfUnreversed = error "Not implemented :("
-
